@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase &amp; Configure — JBG | Jovan Basic Gizmo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="products">
+<div class="wrapper">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="JBG — Jovan Basic Gizmo Home">
+        <span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12.5 8v5.3a2.5 2.5 0 0 1-5 0"/><circle cx="16.4" cy="15.4" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+        <span class="brand-text">
+          <span class="brand-name">JBG</span>
+          <span class="brand-sub">Jovan Basic Gizmo</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li class="has-dropdown">
+            <a href="products.html">Products</a>
+            <div class="nav-dropdown" role="menu" aria-label="JBG Product Lineup">
+              <a href="products.html"><span>All Products</span><span>6</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="air-specifications.html"><span>JBG Air</span><span>12C Laptop</span></a>
+              <a href="pro-specifications.html"><span>JBG Pro</span><span>24C Laptop</span></a>
+              <a href="play-specifications.html"><span>JBG Play</span><span>Handheld</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="tone-specifications.html"><span>JBG Tone</span><span>ANC Audio</span></a>
+              <a href="feather-specifications.html"><span>JBG Feather</span><span>20g Mouse</span></a>
+              <a href="vista-specifications.html"><span>JBG Vista</span><span>16&quot; Display</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="compare.html"><span>Compare Products</span><span>&rarr;</span></a>
+              <a href="purchase.html"><span>Purchase</span><span>&rarr;</span></a>
+              <a href="cart.html"><span>Shopping Cart</span><span>&rarr;</span></a>
+            </div>
+          </li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a> <span>/</span> <a href="products.html">Products</a> <span>/</span> <span>Purchase</span>
+        </div>
+        <div class="section-header">
+          <span class="eyebrow">Configure &amp; Enquire</span>
+          <h1 class="section-title">Purchase Your JBG</h1>
+          <p class="section-lead">Select a model, finish and configuration to prepare a purchase enquiry. All USD pricing is proposed and subject to validation — no payment is taken.</p>
+        </div>
+        <div class="purchase-grid">
+          <div class="purchase-steps">
+            <div class="purchase-step">
+              <span class="step-label">Step 01</span>
+              <h2 class="step-title">Choose Your Model</h2>
+              <div class="model-grid" id="modelSelector">
+          <button type="button" class="model-card" data-model="air">
+            <img class="model-thumb" src="assets/jbg-air-midnight.png" alt="JBG Air">
+            <span class="model-card-text">
+              <span class="model-card-name">JBG Air</span>
+              <span class="model-card-sub">Professional Mobility</span>
+              <span class="model-card-price">From US$1,999</span>
+            </span>
+          </button>
+          <button type="button" class="model-card" data-model="pro">
+            <img class="model-thumb" src="assets/jbg-pro-spaceblack.png" alt="JBG Pro">
+            <span class="model-card-text">
+              <span class="model-card-name">JBG Pro</span>
+              <span class="model-card-sub">Professional Performance</span>
+              <span class="model-card-price">From US$2,499</span>
+            </span>
+          </button>
+          <button type="button" class="model-card" data-model="play">
+            <img class="model-thumb" src="assets/jbg-play-midnight.png" alt="JBG Play">
+            <span class="model-card-text">
+              <span class="model-card-name">JBG Play</span>
+              <span class="model-card-sub">Portable Handheld Gaming</span>
+              <span class="model-card-price">From US$2,199</span>
+            </span>
+          </button>
+          <button type="button" class="model-card" data-model="tone">
+            <img class="model-thumb" src="assets/jbg-tone-midnight.png" alt="JBG Tone">
+            <span class="model-card-text">
+              <span class="model-card-name">JBG Tone</span>
+              <span class="model-card-sub">Premium ANC Earphones</span>
+              <span class="model-card-price">From US$299</span>
+            </span>
+          </button>
+          <button type="button" class="model-card" data-model="feather">
+            <img class="model-thumb" src="assets/jbg-feather-midnight.png" alt="JBG Feather">
+            <span class="model-card-text">
+              <span class="model-card-name">JBG Feather</span>
+              <span class="model-card-sub">Ultralight Wireless Mouse</span>
+              <span class="model-card-price">From US$149</span>
+            </span>
+          </button>
+          <button type="button" class="model-card" data-model="vista">
+            <img class="model-thumb" src="assets/jbg-vista-spacegray.png" alt="JBG Vista">
+            <span class="model-card-text">
+              <span class="model-card-name">JBG Vista</span>
+              <span class="model-card-sub">Portable 16-inch Display</span>
+              <span class="model-card-price">From US$449</span>
+            </span>
+          </button>
+              </div>
+            </div>
+            <div class="purchase-step">
+              <span class="step-label">Step 02</span>
+              <h2 class="step-title">Choose Your Finish</h2>
+              <div class="finish-row" id="finishSelector"></div>
+              <div class="finish-note">Selected finish — <strong id="selectedFinishLabel"></strong></div>
+            </div>
+            <div class="purchase-step" style="margin-bottom: 0;">
+              <span class="step-label">Step 03</span>
+              <h2 class="step-title" id="configStepTitle">Choose Your Storage</h2>
+              <p class="step-lead" id="configStepLead"></p>
+              <div id="configArea"></div>
+            </div>
+          </div>
+          <aside class="summary-card" aria-label="Order summary">
+            <img id="summaryImg" class="summary-img" src="" alt="Selected JBG configuration studio render">
+            <div class="summary-rows">
+              <div class="summary-row"><span class="k">Model</span><span id="sumModel"></span></div>
+              <div class="summary-row"><span class="k">Finish</span><span id="sumFinish"></span></div>
+              <div class="summary-row"><span class="k">Storage</span><span id="sumStorage"></span></div>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row"><span class="k" id="sumBaseLabel"></span><span id="sumBase"></span></div>
+            <div class="summary-row"><span class="k">Storage upgrade</span><span id="sumDelta"></span></div>
+            <div class="summary-divider"></div>
+            <div class="summary-total-row"><span>Estimated Total</span><span class="summary-total" id="sumTotal"></span></div>
+            <button type="button" id="addToCart" class="btn btn-primary summary-cta">Add to Cart &rarr;</button>
+            <p class="summary-note">Reservation enquiry only — proposed USD pricing; no payment is taken. <a id="specLink" href="air-specifications.html">View specifications &rarr;</a></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand" style="color: #f5f5f3;">
+            <span class="brand-mark" style="background:#1c1f26;border-color:#323641;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12.5 8v5.3a2.5 2.5 0 0 1-5 0"/><circle cx="16.4" cy="15.4" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+            <span class="brand-text">
+              <span class="brand-name" style="color:#f5f5f3;">JBG</span>
+              <span class="brand-sub" style="color:#9da2ad;">Power Without Boundaries</span>
+            </span>
+          </a>
+          <p class="footer-brand-desc">
+            Jovan Basic Gizmo engineers portable high-performance laptops, handheld gaming hardware, and precision accessories defined by quiet luxury and thermal innovation.
+          </p>
+          <div class="footer-socials" aria-label="JBG Social Media">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on X">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4L4 20"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About JBG</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="compare.html">Compare Lineup</a></li>
+            <li><a href="purchase.html">Purchase</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Product Lineup</h3>
+          <ul class="footer-links">
+            <li><a href="air-specifications.html">JBG Air</a></li>
+            <li><a href="pro-specifications.html">JBG Pro</a></li>
+            <li><a href="play-specifications.html">JBG Play</a></li>
+            <li><a href="tone-specifications.html">JBG Tone</a></li>
+            <li><a href="feather-specifications.html">JBG Feather</a></li>
+            <li><a href="vista-specifications.html">JBG Vista</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Get in Touch</h3>
+          <ul class="footer-contact-list">
+            <li>Email: <a href="mailto:jbgenquires@gmail.com">jbgenquires@gmail.com</a></li>
+            <li>Phone: +65 1234 5678 (Placeholder)</li>
+            <li>Location: JBG Headquarters, Singapore (Placeholder)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Jovan Basic Gizmo (JBG). All rights reserved.</span>
+        <span>All hardware specifications and USD prices shown are proposed development targets subject to validation.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+  (function () {
+    var MODELS = {"air": {"name": "JBG Air", "sub": "Professional Mobility", "base": 1999, "spec": "air-specifications.html", "storage": true, "rec": "512 GB", "box": [], "colours": [["Midnight", "#2A2F38", "assets/jbg-air-midnight.png"], ["Starlight", "#D8CFBF", "assets/jbg-air-starlight.png"], ["Silver", "#D4D6D9", "assets/jbg-air-silver.png"], ["Sky Blue", "#A9BFD3", "assets/jbg-air-skyblue.png"]]}, "pro": {"name": "JBG Pro", "sub": "Professional Performance", "base": 2499, "spec": "pro-specifications.html", "storage": true, "rec": "1 TB", "box": [], "colours": [["Space Black", "#333538", "assets/jbg-pro-spaceblack.png"], ["Silver", "#D4D6D9", "assets/jbg-pro-silver.png"], ["Natural Titanium", "#989086", "assets/jbg-pro-naturaltitanium.png"]]}, "play": {"name": "JBG Play", "sub": "Portable Handheld Gaming", "base": 2199, "spec": "play-specifications.html", "storage": true, "rec": "512 GB", "box": [], "colours": [["Midnight", "#2A2F38", "assets/jbg-play-midnight.png"], ["Ultramarine", "#44547E", "assets/jbg-play-ultramarine.png"], ["Crimson", "#8E2430", "assets/jbg-play-crimson.png"]]}, "tone": {"name": "JBG Tone", "sub": "Premium ANC Earphones", "base": 299, "spec": "tone-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Tone", "Earphones pair"], ["Charging Case", "Wireless + USB-C"], ["Ear Tips", "3 acoustic sizes"], ["USB-C Cable", "Braided charging"]], "colours": [["Midnight", "#2A2F38", "assets/jbg-tone-midnight.png"], ["Ivory", "#E9E6DD", "assets/jbg-tone-ivory.png"], ["Titanium", "#8A8D92", "assets/jbg-tone-titanium.png"]]}, "feather": {"name": "JBG Feather", "sub": "Ultralight Wireless Mouse", "base": 149, "spec": "feather-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Feather", "Ultralight mouse"], ["2.4G Receiver", "8K wireless dongle"], ["USB-C Paracord", "Charge + wired"], ["Travel Pouch", "Protective sleeve"]], "colours": [["Midnight", "#2A2F38", "assets/jbg-feather-midnight.png"], ["Arctic White", "#ECEEF0", "assets/jbg-feather-arcticwhite.png"]]}, "vista": {"name": "JBG Vista", "sub": "Portable 16-inch Display", "base": 449, "spec": "vista-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Vista", "16-inch 2.5K display"], ["Protective Case", "Magnetic stand folio"], ["USB-C Cable", "Video + PD power"], ["Mini-HDMI", "Display cable"]], "colours": [["Space Gray", "#6E6F74", "assets/jbg-vista-spacegray.png"], ["Silver", "#D4D6D9", "assets/jbg-vista-silver.png"]]}};
+    var STORAGE = [["256 GB", 0, "Included"], ["512 GB", 80, "+US$80"], ["1 TB", 180, "+US$180"], ["2 TB", 380, "+US$380"]];
+    var state = { model: 'air', finish: 0, cap: '512 GB' };
+    var q = location.search.match(/model=([a-z]+)/i);
+    if (q && MODELS[q[1]]) state.model = q[1].toLowerCase();
+
+    var modelBtns = Array.prototype.slice.call(document.querySelectorAll('.model-card'));
+    var finishEl = document.getElementById('finishSelector');
+    var finishLbl = document.getElementById('selectedFinishLabel');
+    var configArea = document.getElementById('configArea');
+    var configTitle = document.getElementById('configStepTitle');
+    var configLead = document.getElementById('configStepLead');
+    var sImg = document.getElementById('summaryImg');
+    var sModel = document.getElementById('sumModel');
+    var sFinish = document.getElementById('sumFinish');
+    var sStorage = document.getElementById('sumStorage');
+    var sBaseLabel = document.getElementById('sumBaseLabel');
+    var sBase = document.getElementById('sumBase');
+    var sDelta = document.getElementById('sumDelta');
+    var sTotal = document.getElementById('sumTotal');
+    var sSpec = document.getElementById('specLink');
+
+    function fmt(n) { return 'US$' + n.toLocaleString('en-US'); }
+
+    function renderFinishes() {
+      var mdl = MODELS[state.model];
+      finishEl.innerHTML = '';
+      mdl.colours.forEach(function (c, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'swatch-btn' + (i === state.finish ? ' selected' : '');
+        b.innerHTML = '<span class="swatch-dot" style="background:' + c[1] + ';"></span>' +
+                      '<span class="swatch-name">' + c[0] + '</span>';
+        b.addEventListener('click', function () {
+          state.finish = i;
+          finishEl.querySelectorAll('.swatch-btn').forEach(function (s) { s.classList.remove('selected'); });
+          b.classList.add('selected');
+          updateSummary();
+        });
+        finishEl.appendChild(b);
+      });
+    }
+
+    function renderConfig() {
+      var mdl = MODELS[state.model];
+      configArea.innerHTML = '';
+      var grid = document.createElement('div');
+      grid.className = 'config-grid-4';
+      if (mdl.storage) {
+        configTitle.textContent = 'Choose Your Storage';
+        configLead.textContent = 'PCIe Gen4 NVMe SSD — upgrade pricing in USD (proposed). Base price includes 256 GB.';
+        STORAGE.forEach(function (s) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'config-card' + (s[0] === state.cap ? ' selected' : '');
+          b.innerHTML = (s[0] === mdl.rec ? '<span class="config-rec">Recommended</span>' : '') +
+                        '<span class="config-title">' + s[0] + '</span>' +
+                        '<span class="config-sub">' + s[2] + '</span>';
+          b.addEventListener('click', function () {
+            state.cap = s[0];
+            grid.querySelectorAll('.config-card').forEach(function (c) { c.classList.remove('selected'); });
+            b.classList.add('selected');
+            updateSummary();
+          });
+          grid.appendChild(b);
+        });
+      } else {
+        configTitle.textContent = 'In the Box';
+        configLead.textContent = 'Single configuration — the full accessory set is included.';
+        mdl.box.forEach(function (bx) {
+          var d = document.createElement('div');
+          d.className = 'config-card static-box';
+          d.innerHTML = '<span class="config-title">' + bx[0] + '</span>' +
+                        '<span class="config-sub">' + bx[1] + '</span>';
+          grid.appendChild(d);
+        });
+      }
+      configArea.appendChild(grid);
+    }
+
+    function currentDelta() {
+      var mdl = MODELS[state.model];
+      var delta = 0;
+      if (mdl.storage) {
+        STORAGE.forEach(function (s) { if (s[0] === state.cap) delta = s[1]; });
+      }
+      return delta;
+    }
+
+    function updateSummary() {
+      var mdl = MODELS[state.model];
+      var col = mdl.colours[state.finish];
+      var delta = currentDelta();
+      if (sImg.getAttribute('src') !== col[2]) {
+        sImg.style.opacity = '0';
+        sImg.onload = function () { sImg.style.opacity = '1'; };
+        sImg.src = col[2];
+      }
+      sImg.alt = mdl.name + ' in ' + col[0] + ' — studio render';
+      finishLbl.textContent = col[0];
+      sModel.textContent = mdl.name;
+      sFinish.textContent = col[0];
+      sStorage.textContent = mdl.storage ? state.cap + ' NVMe SSD' : 'Standard configuration';
+      sBaseLabel.textContent = mdl.name + ' — base';
+      sBase.textContent = fmt(mdl.base);
+      sDelta.textContent = delta ? '+' + fmt(delta) : 'Included';
+      sTotal.textContent = fmt(mdl.base + delta);
+      sSpec.href = mdl.spec;
+      sSpec.textContent = 'View ' + mdl.name + ' specifications →';
+      modelBtns.forEach(function (b) {
+        b.classList.toggle('selected', b.getAttribute('data-model') === state.model);
+      });
+    }
+
+    modelBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.model = b.getAttribute('data-model');
+        state.finish = 0;
+        state.cap = MODELS[state.model].rec;
+        renderFinishes();
+        renderConfig();
+        updateSummary();
+      });
+    });
+
+    state.cap = MODELS[state.model].rec;
+    renderFinishes();
+    renderConfig();
+    updateSummary();
+
+    document.getElementById('addToCart').addEventListener('click', function () {
+      var mdl = MODELS[state.model];
+      var col = mdl.colours[state.finish];
+      var cart = [];
+      try { cart = JSON.parse(localStorage.getItem('jbg_cart') || '[]'); } catch (e) {}
+      cart.push({
+        model: state.model,
+        name: mdl.name,
+        sub: mdl.sub,
+        finish: col[0],
+        img: col[2],
+        storage: mdl.storage ? state.cap + ' NVMe SSD' : 'Standard configuration',
+        price: mdl.base + currentDelta()
+      });
+      try { localStorage.setItem('jbg_cart', JSON.stringify(cart)); } catch (e) {}
+      location.href = 'cart.html';
+    });
+  })();
+</script>
+<script>if(location.search.indexOf('shot=1')!==-1){document.documentElement.style.background='#00ff66';document.body.style.background='#00ff66';var w=document.querySelector('.wrapper');if(w){w.style.minHeight='0';w.style.background='var(--bg)';}}</script>
+</body>
+</html>

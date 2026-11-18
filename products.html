@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products — JBG | Jovan Basic Gizmo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="products">
+<div class="wrapper">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="JBG — Jovan Basic Gizmo Home">
+        <span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12.5 8v5.3a2.5 2.5 0 0 1-5 0"/><circle cx="16.4" cy="15.4" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+        <span class="brand-text">
+          <span class="brand-name">JBG</span>
+          <span class="brand-sub">Jovan Basic Gizmo</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li class="has-dropdown">
+            <a href="products.html">Products</a>
+            <div class="nav-dropdown" role="menu" aria-label="JBG Product Lineup">
+              <a href="products.html"><span>All Products</span><span>6</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="air-specifications.html"><span>JBG Air</span><span>12C Laptop</span></a>
+              <a href="pro-specifications.html"><span>JBG Pro</span><span>24C Laptop</span></a>
+              <a href="play-specifications.html"><span>JBG Play</span><span>Handheld</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="tone-specifications.html"><span>JBG Tone</span><span>ANC Audio</span></a>
+              <a href="feather-specifications.html"><span>JBG Feather</span><span>20g Mouse</span></a>
+              <a href="vista-specifications.html"><span>JBG Vista</span><span>16&quot; Display</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="compare.html"><span>Compare Products</span><span>&rarr;</span></a>
+              <a href="purchase.html"><span>Purchase</span><span>&rarr;</span></a>
+              <a href="cart.html"><span>Shopping Cart</span><span>&rarr;</span></a>
+            </div>
+          </li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">JBG Ecosystem Portfolio</span>
+          <h1 class="section-title" style="font-size: clamp(2.1rem, 3.5vw, 3rem);">Our Products <span class="badge-proposed" style="vertical-align: middle; margin-left: 8px;">Proposed Retail &middot; USD</span></h1>
+          <p class="section-lead">
+            Six cohesive devices engineered around portable productivity, sustained workstation power, handheld gaming, and ultra-lightweight mobile setups. Select any product to inspect its full specification sheet.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-tabs" role="tablist" aria-label="Filter products by category">
+            <button type="button" class="filter-tab active" data-filter="all">All</button>
+            <button type="button" class="filter-tab" data-filter="mobility">Mobility</button>
+            <button type="button" class="filter-tab" data-filter="performance">Performance</button>
+            <button type="button" class="filter-tab" data-filter="gaming">Gaming</button>
+            <button type="button" class="filter-tab" data-filter="accessories">Accessories</button>
+          </div>
+          <a href="compare.html" class="btn btn-outline btn-sm">Compare Air vs Pro &rarr;</a>
+        </div>
+
+        <div class="cards-grid-3" id="productsGrid">
+          <!-- 1. JBG Air -->
+          <article class="product-card" data-categories="mobility">
+            <a href="air-specifications.html" class="product-card-media">
+              <span class="card-category-tag">Mobility</span>
+              <img src="assets/jbg-air.png" alt="JBG Air 12-core ultra-portable laptop studio render">
+            </a>
+            <div class="product-card-body">
+              <div class="product-card-title-row">
+                <h3>JBG Air</h3>
+                <span class="badge-proposed">Proposed</span>
+              </div>
+              <div class="product-card-sub">12-Core Ultra-Portable Professional Laptop</div>
+              <p class="product-card-desc">
+                Slim ~25.4 mm aluminium chassis with compact liquid cooling for executives and travelling specialists — about 20% faster at heavy workloads than the typical premium laptop.
+              </p>
+              <div class="product-card-specs-mini">
+                <span class="spec-chip">12C / 24T</span>
+                <span class="spec-chip">Up to 5.2 GHz Peak</span>
+                <span class="spec-chip">256 GB&ndash;2 TB NVMe</span>
+              </div>
+              <div class="dot-row" aria-label="Available finishes">
+                <span class="dot" style="background:#2A2F38" title="Midnight"></span>
+                <span class="dot" style="background:#D8CFBF" title="Starlight"></span>
+                <span class="dot" style="background:#D4D6D9" title="Silver"></span>
+                <span class="dot" style="background:#A9BFD3" title="Sky Blue"></span>
+                <span class="dot-label">4 finishes</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="price-tag">From US$1,999 <small>Proposed Base Retail</small></div>
+                <a href="air-specifications.html" class="card-link">View Specs &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. JBG Pro -->
+          <article class="product-card" data-categories="performance">
+            <a href="pro-specifications.html" class="product-card-media dark-stage">
+              <span class="card-category-tag">Performance</span>
+              <img src="assets/jbg-pro.png" alt="JBG Pro 24-core professional performance laptop studio render">
+            </a>
+            <div class="product-card-body">
+              <div class="product-card-title-row">
+                <h3>JBG Pro</h3>
+                <span class="badge-proposed">Proposed</span>
+              </div>
+              <div class="product-card-sub">24-Core Hybrid Workstation Laptop</div>
+              <p class="product-card-desc">
+                Expanded liquid-cooling headroom, &ge;20% more RAM than equivalent Air, and ~55% faster heavy-workload performance than the typical premium laptop.
+              </p>
+              <div class="product-card-specs-mini">
+                <span class="spec-chip">24C Hybrid</span>
+                <span class="spec-chip">+20% RAM vs Air</span>
+                <span class="spec-chip">256 GB&ndash;2 TB NVMe</span>
+              </div>
+              <div class="dot-row" aria-label="Available finishes">
+                <span class="dot" style="background:#333538" title="Space Black"></span>
+                <span class="dot" style="background:#D4D6D9" title="Silver"></span>
+                <span class="dot" style="background:#989086" title="Natural Titanium"></span>
+                <span class="dot-label">3 finishes</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="price-tag">From US$2,499 <small>Proposed Base (+25%)</small></div>
+                <a href="pro-specifications.html" class="card-link">View Specs &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. JBG Play -->
+          <article class="product-card" data-categories="gaming mobility">
+            <a href="play-specifications.html" class="product-card-media dark-stage">
+              <span class="card-category-tag">Gaming</span>
+              <img src="assets/jbg-play.png" alt="JBG Play handheld gaming computer studio render">
+            </a>
+            <div class="product-card-body">
+              <div class="product-card-title-row">
+                <h3>JBG Play</h3>
+                <span class="badge-proposed">Proposed</span>
+              </div>
+              <div class="product-card-sub">Premium Handheld Gaming Computer</div>
+              <p class="product-card-desc">
+                Prioritises 12&ndash;16 integrated GPU compute units, memory bandwidth, and 15&ndash;30 W battery-aware thermals in an ergonomic body ~20% lighter than typical handhelds.
+              </p>
+              <div class="product-card-specs-mini">
+                <span class="spec-chip">8C / 16T</span>
+                <span class="spec-chip">12&ndash;16 GPU CUs</span>
+                <span class="spec-chip">256 GB&ndash;2 TB NVMe</span>
+              </div>
+              <div class="dot-row" aria-label="Available finishes">
+                <span class="dot" style="background:#2A2F38" title="Midnight"></span>
+                <span class="dot" style="background:#44547E" title="Ultramarine"></span>
+                <span class="dot" style="background:#8E2430" title="Crimson"></span>
+                <span class="dot-label">3 finishes</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="price-tag">From US$2,199 <small>Proposed Base (+10%)</small></div>
+                <a href="play-specifications.html" class="card-link">View Specs &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. JBG Tone -->
+          <article class="product-card" data-categories="accessories mobility">
+            <a href="tone-specifications.html" class="product-card-media">
+              <span class="card-category-tag">Accessories &middot; Audio</span>
+              <img src="assets/jbg-tone.png" alt="JBG Tone ANC wireless earphones and charging case studio render">
+            </a>
+            <div class="product-card-body">
+              <div class="product-card-title-row">
+                <h3>JBG Tone</h3>
+                <span class="badge-proposed">Proposed</span>
+              </div>
+              <div class="product-card-sub">Adaptive ANC Wireless Earphones</div>
+              <p class="product-card-desc">
+                Engineered for focused work in transit and open offices, targeting up to 99% ambient noise reduction, hybrid dual drivers, and 32-hour total wireless case battery.
+              </p>
+              <div class="product-card-specs-mini">
+                <span class="spec-chip">Up to 99% ANC</span>
+                <span class="spec-chip">8h + 32h Case</span>
+                <span class="spec-chip">BT 5.4 Multipoint</span>
+              </div>
+              <div class="dot-row" aria-label="Available finishes">
+                <span class="dot" style="background:#2A2F38" title="Midnight"></span>
+                <span class="dot" style="background:#E9E6DD" title="Ivory"></span>
+                <span class="dot" style="background:#8A8D92" title="Titanium"></span>
+                <span class="dot-label">3 finishes</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="price-tag">From US$299 <small>Proposed Retail</small></div>
+                <a href="tone-specifications.html" class="card-link">View Specs &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. JBG Feather -->
+          <article class="product-card" data-categories="accessories performance gaming">
+            <a href="feather-specifications.html" class="product-card-media">
+              <span class="card-category-tag">Accessories &middot; Input</span>
+              <img src="assets/jbg-feather.png" alt="JBG Feather 20g carbon-shell ultralight wireless mouse studio render">
+            </a>
+            <div class="product-card-body">
+              <div class="product-card-title-row">
+                <h3>JBG Feather</h3>
+                <span class="badge-proposed">Proposed</span>
+              </div>
+              <div class="product-card-sub">~20g Carbon-Shell Wireless Mouse</div>
+              <p class="product-card-desc">
+                Ultra-low-inertia carbon-composite shell concept paired with a 26,000 DPI optical sensor, up to 8,000 Hz wireless polling target, and virgin PTFE glide feet.
+              </p>
+              <div class="product-card-specs-mini">
+                <span class="spec-chip">~20 g Target</span>
+                <span class="spec-chip">26K DPI</span>
+                <span class="spec-chip">8K Hz Polling</span>
+              </div>
+              <div class="dot-row" aria-label="Available finishes">
+                <span class="dot" style="background:#2A2F38" title="Midnight"></span>
+                <span class="dot" style="background:#ECEEF0" title="Arctic White"></span>
+                <span class="dot-label">2 finishes</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="price-tag">From US$149 <small>Proposed Retail</small></div>
+                <a href="feather-specifications.html" class="card-link">View Specs &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. JBG Vista -->
+          <article class="product-card" data-categories="accessories mobility performance">
+            <a href="vista-specifications.html" class="product-card-media">
+              <span class="card-category-tag">Accessories &middot; Display</span>
+              <img src="assets/jbg-vista.png" alt="JBG Vista 16-inch 0.7-inch thin portable display on protective stand case">
+            </a>
+            <div class="product-card-body">
+              <div class="product-card-title-row">
+                <h3>JBG Vista</h3>
+                <span class="badge-proposed">Proposed</span>
+              </div>
+              <div class="product-card-sub">16-inch 2.5K Ultra-Thin Portable Monitor</div>
+              <p class="product-card-desc">
+                0.7-inch (17.8 mm) travel-ready 2560 &times; 1600 IPS panel (~750 g target) with dual USB-C pass-through and an included magnetic protective folio that folds into a desk stand.
+              </p>
+              <div class="product-card-specs-mini">
+                <span class="spec-chip">16&quot; 2.5K IPS</span>
+                <span class="spec-chip">0.7 in Thin</span>
+                <span class="spec-chip">Stand Case Incl.</span>
+              </div>
+              <div class="dot-row" aria-label="Available finishes">
+                <span class="dot" style="background:#6E6F74" title="Space Gray"></span>
+                <span class="dot" style="background:#D4D6D9" title="Silver"></span>
+                <span class="dot-label">2 finishes</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="price-tag">From US$449 <small>Proposed Retail</small></div>
+                <a href="vista-specifications.html" class="card-link">View Specs &rarr;</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight section-subtle">
+      <div class="container split-grid">
+        <div>
+          <span class="eyebrow">Unified Storage Architecture</span>
+          <h2 class="section-title" style="font-size: 1.85rem;">PCIe Gen4 NVMe SSD Options</h2>
+          <p class="section-lead" style="margin-bottom: 18px;">
+            JBG Air, JBG Pro, and JBG Play share transparent, identical NVMe SSD upgrade tiers above the included 256 GB baseline (distinct from installed system RAM).
+          </p>
+          <a href="compare.html" class="btn btn-primary btn-sm">Compare Full Specifications</a>
+        </div>
+        <div class="config-grid-4" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="config-card static-box">
+            <span class="config-title">256 GB</span>
+            <span class="config-sub">Included Baseline</span>
+          </div>
+          <div class="config-card static-box">
+            <span class="config-title">512 GB</span>
+            <span class="config-sub">+US$80 (Air/Play Rec.)</span>
+          </div>
+          <div class="config-card static-box">
+            <span class="config-title">1 TB</span>
+            <span class="config-sub">+US$180 (Pro Rec.)</span>
+          </div>
+          <div class="config-card static-box">
+            <span class="config-title">2 TB</span>
+            <span class="config-sub">+US$380 Upgrade</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand" style="color: #f5f5f3;">
+            <span class="brand-mark" style="background:#1c1f26;border-color:#323641;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12.5 8v5.3a2.5 2.5 0 0 1-5 0"/><circle cx="16.4" cy="15.4" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+            <span class="brand-text">
+              <span class="brand-name" style="color:#f5f5f3;">JBG</span>
+              <span class="brand-sub" style="color:#9da2ad;">Power Without Boundaries</span>
+            </span>
+          </a>
+          <p class="footer-brand-desc">
+            Jovan Basic Gizmo engineers portable high-performance laptops, handheld gaming hardware, and precision accessories defined by quiet luxury and thermal innovation.
+          </p>
+          <div class="footer-socials" aria-label="JBG Social Media">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on X">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4L4 20"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="JBG on YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About JBG</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="compare.html">Compare Lineup</a></li>
+            <li><a href="purchase.html">Purchase</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Product Lineup</h3>
+          <ul class="footer-links">
+            <li><a href="air-specifications.html">JBG Air</a></li>
+            <li><a href="pro-specifications.html">JBG Pro</a></li>
+            <li><a href="play-specifications.html">JBG Play</a></li>
+            <li><a href="tone-specifications.html">JBG Tone</a></li>
+            <li><a href="feather-specifications.html">JBG Feather</a></li>
+            <li><a href="vista-specifications.html">JBG Vista</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Get in Touch</h3>
+          <ul class="footer-contact-list">
+            <li>Email: <a href="mailto:jbgenquires@gmail.com">jbgenquires@gmail.com</a></li>
+            <li>Phone: +65 1234 5678 (Placeholder)</li>
+            <li>Location: JBG Headquarters, Singapore (Placeholder)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Jovan Basic Gizmo (JBG). All rights reserved.</span>
+        <span>All hardware specifications and USD prices shown are proposed development targets subject to validation.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+  (function () {
+    var tabs = document.querySelectorAll('.filter-tab');
+    var cards = document.querySelectorAll('#productsGrid .product-card');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var f = tab.getAttribute('data-filter');
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        cards.forEach(function (c) {
+          var cats = (c.getAttribute('data-categories') || '').split(' ');
+          if (f === 'all' || cats.indexOf(f) !== -1) {
+            c.classList.remove('is-hidden');
+          } else {
+            c.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>
+<script>if(location.search.indexOf('shot=1')!==-1){document.documentElement.style.background='#00ff66';document.body.style.background='#00ff66';var w=document.querySelector('.wrapper');if(w){w.style.minHeight='0';w.style.background='var(--bg)';}}</script>
+</body>
+</html>
