@@ -139,6 +139,7 @@
             Select a subject or write to us regarding General Enquiries, Product Specifications, or Business Partnerships.
           </p>
           <form id="jbgContactForm">
+            <div id="orderSummaryBox" class="order-summary" hidden></div>
             <div class="form-group">
               <label class="form-label" for="contactName">Name</label>
               <input class="form-control" type="text" id="contactName" name="name" placeholder="Your full name" required>
@@ -257,22 +258,35 @@
     var order = null;
     try { order = JSON.parse(localStorage.getItem('jbg_order') || 'null'); } catch (e) {}
     var isPurchase = location.search.indexOf('intent=purchase') !== -1 && order && order.items && order.items.length;
+    var orderLines = [];
     if (isPurchase) {
       var h2 = document.querySelector('.contact-form-card h2');
       if (h2) h2.textContent = 'Complete Your Purchase';
       var lead = document.querySelector('.contact-form-card p');
       if (lead) lead.textContent = 'Your card is verified — add your name and email to submit the order. JBG responds within 2 business days.';
       subjIn.value = 'Product Purchase — JBG Order';
-      var lines = ['JBG ORDER — pending verification', ''];
+      msgIn.placeholder = 'Delivery notes or questions for the JBG team (optional)...';
+
+      orderLines.push('JBG ORDER — pending verification');
       order.items.forEach(function (it) {
-        lines.push('- ' + it.name + ' | ' + it.finish + ' | ' + it.storage + ' | US$' + it.price.toLocaleString('en-US'));
+        orderLines.push('- ' + it.name + ' | ' + it.finish + ' | ' + it.storage + ' | US$' + it.price.toLocaleString('en-US'));
       });
-      lines.push('');
-      lines.push('Estimated total: US$' + order.total.toLocaleString('en-US'));
-      lines.push('Partner bank: ' + order.bank);
-      lines.push('Verified card: ' + order.card);
-      lines.push('Terms accepted: 800+ credit check, 2-business-day review, no-resale allocation.');
-      msgIn.value = lines.join('\n');
+      orderLines.push('Estimated total: US$' + order.total.toLocaleString('en-US'));
+      orderLines.push('Partner bank: ' + order.bank);
+      orderLines.push('Verified card: ' + order.card);
+      orderLines.push('Terms accepted: 800+ credit check, 2-business-day review, no-resale allocation.');
+
+      var box = document.getElementById('orderSummaryBox');
+      if (box) {
+        var html = '<strong>Your verified order</strong>';
+        order.items.forEach(function (it) {
+          html += '<div class="order-line"><span>' + it.name + ' &middot; ' + it.finish + ' &middot; ' + it.storage + '</span><span>US$' + it.price.toLocaleString('en-US') + '</span></div>';
+        });
+        html += '<div class="order-line order-total"><span>Estimated total</span><span>US$' + order.total.toLocaleString('en-US') + '</span></div>';
+        html += '<div class="order-meta">' + order.bank + ' &middot; ' + order.card + ' &middot; verified</div>';
+        box.innerHTML = html;
+        box.hidden = false;
+      }
     }
 
     form.addEventListener('submit', function (e) {
@@ -299,7 +313,8 @@
             name: name,
             email: email,
             subject: subject,
-            message: message,
+            message: message || '(no customer notes)',
+            order_details: isPurchase ? orderLines.join('\n') : '(general enquiry — no order)',
             _subject: 'JBG Website Enquiry: ' + subject,
             _replyto: email
           })
