@@ -1946,3 +1946,164 @@ textarea.form-control {
     padding-bottom: 2px;
   }
 }
+
+/* ---------- Quiet-Luxury Motion & Flow Transitions ---------- */
+@keyframes jbgPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes jbgFadePop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes jbgStatusPulse {
+  0% {
+    opacity: 0.45;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.site-header {
+  transition: box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1), background-color 260ms ease, border-color 260ms ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(245, 245, 242, 0.96);
+  box-shadow: 0 8px 26px rgba(14, 15, 18, 0.06);
+}
+
+.site-nav .nav-list > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav .nav-list > li > a:hover::after,
+body[data-page="home"] .site-nav .nav-list > li > a[href="index.html"]::after,
+body[data-page="about"] .site-nav .nav-list > li > a[href="aboutus.html"]::after,
+body[data-page="products"] .site-nav .nav-list > li > a[href="products.html"]::after,
+body[data-page="technology"] .site-nav .nav-list > li > a[href="technology.html"]::after,
+body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::after {
+  transform: scaleX(1);
+}
+
+html.jbg-motion .site-main {
+  animation: jbgPageIn 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+html.jbg-motion .site-main.is-leaving {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+html.jbg-motion .reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 540ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 540ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    background-color var(--transition);
+}
+
+html.jbg-motion .reveal-item.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.product-card.filter-pop {
+  animation: jbgFadePop 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pillar-card,
+.mvv-card,
+.stat-card,
+.rule-card {
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.pillar-card:hover,
+.mvv-card:hover,
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--titanium-light);
+}
+
+.swatch-btn,
+.bank-chip,
+.model-card,
+.config-card,
+.filter-tab {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), border-color var(--transition), background-color var(--transition), box-shadow var(--transition), color var(--transition);
+}
+
+.swatch-btn:active,
+.bank-chip:active,
+.model-card:active,
+.config-card:active,
+.filter-tab:active {
+  transform: scale(0.98);
+}
+
+.cart-item {
+  transition: opacity 220ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1), max-height 240ms cubic-bezier(0.22, 1, 0.36, 1), padding 240ms ease, margin 240ms ease;
+  max-height: 220px;
+}
+
+.cart-item.is-removing {
+  opacity: 0;
+  transform: translateX(-16px);
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-width: 0;
+  overflow: hidden;
+}
+
+.card-status.ok,
+.card-status.bad,
+.form-status.visible,
+.verify-done:not([hidden]),
+.order-summary:not([hidden]) {
+  animation: jbgStatusPulse 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
