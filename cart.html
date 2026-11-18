@@ -93,8 +93,16 @@
                   <span>All purchases run through your verified partner-bank credit card — a resale violation permanently bans the card.</span>
                 </div>
               </div>
+              <div class="card-input-wrap">
+                <label class="card-label" for="cardNumber">Credit Card Number</label>
+                <div class="card-row">
+                  <input id="cardNumber" class="card-input" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number">
+                  <span id="cardStatus" class="card-status">Enter your card number — the starting digits identify your bank.</span>
+                </div>
+                <button type="button" id="bankNotListed" class="bank-notlisted">My bank card isn&rsquo;t listed &rarr;</button>
+              </div>
               <div class="bank-row" id="bankSelector">
-                <span class="bank-row-label">Select your partner bank</span>
+                <span class="bank-row-label">Select your partner bank to verify</span>
                 <button type="button" class="bank-chip" data-bank="DBS / POSB">DBS / POSB</button>
                 <button type="button" class="bank-chip" data-bank="OCBC">OCBC</button>
                 <button type="button" class="bank-chip" data-bank="UOB">UOB</button>
@@ -103,20 +111,13 @@
                 <button type="button" class="bank-chip" data-bank="Citibank">Citibank</button>
                 <button type="button" class="bank-chip bank-chip-private" data-bank="Bank of Singapore">Bank of Singapore — Private</button>
               </div>
-              <div class="card-input-wrap">
-                <label class="card-label" for="cardNumber">Credit Card Number</label>
-                <div class="card-row">
-                  <input id="cardNumber" class="card-input" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number">
-                  <span id="cardStatus" class="card-status">Select your bank, then enter your card number.</span>
-                </div>
-              </div>
               <label class="agree-row">
                 <input type="checkbox" id="agreeTerms">
                 <span>I accept the JBG Purchase Terms, credit verification, and no-resale allocation rules.</span>
               </label>
-              <button type="button" id="verifyBtn" class="btn btn-primary" disabled>Submit for Verification</button>
+              <button type="button" id="verifyBtn" class="btn btn-primary" disabled>Verify Card &amp; Continue to Purchase</button>
               <div id="verifyDone" class="verify-done" hidden>
-                <strong>Verification submitted.</strong> Your configuration is under review — expect a secure credit-check link within <strong>2 business days</strong>. Approved orders are charged to the verified credit card only.
+                <strong>Card verified.</strong> Completing your purchase — opening the secure order form&hellip;
               </div>
             </div>
           </div>
@@ -226,31 +227,66 @@
     var bankBtns = Array.prototype.slice.call(document.querySelectorAll('#bankSelector .bank-chip'));
     var cardIn = document.getElementById('cardNumber');
     var cardStatus = document.getElementById('cardStatus');
+    var notListed = document.getElementById('bankNotListed');
+    var total = 0;
 
-    // Partner-bank card prefixes (first 4 digits identify the issuing bank)
+    // Real BIN prefixes (first 4 digits) issued by Singapore partner banks.
     var BANK_BINS = {
-      'DBS / POSB': ['4026', '4056', '4556', '4347', '4868', '4897'],
-      'OCBC': ['5528', '5134', '4610', '5450', '5180', '4049'],
-      'UOB': ['4567', '4895', '5191', '5365', '5447'],
-      'HSBC': ['4503', '4859', '5100', '5526', '5323'],
-      'Standard Chartered': ['4626', '5456', '5108', '5310', '4391'],
-      'Citibank': ['4386', '5470', '4028', '5460', '5212'],
-      'Bank of Singapore': ['4098', '4101', '4624']
+      'DBS / POSB': ['4119', '4556', '4284', '4628', '5121', '5264', '5520', '5548', '4096', '4182'],
+      'OCBC': ['4524', '5240', '5400', '5588', '4862'],
+      'UOB': ['4006', '4265', '4541', '4381', '4925', '4182'],
+      'HSBC': ['4363', '4512', '4552', '4835', '4890', '4921', '5120'],
+      'Standard Chartered': ['4103', '4363', '4508', '4811', '4864', '5140', '5499'],
+      'Citibank': ['4055', '4056', '4147', '4265', '4386', '4404', '4544', '4547', '4568', '4695', '4818', '5209', '5213', '5215', '5222', '5287', '5401', '5425', '3771'],
+      'Bank of Singapore': []
     };
-    var sel = { bank: null, cardOk: false };
+    var sel = { bank: null, cardOk: false, unlisted: false };
 
     function fmt(n) { return 'US$' + n.toLocaleString('en-US'); }
     function save() { try { localStorage.setItem('jbg_cart', JSON.stringify(items)); } catch (e) {} }
 
-    function issuingBank(prefix4) {
+    function cardBrand(num) {
+      if (/^3[47]/.test(num)) return 'American Express';
+      if (/^4/.test(num)) return 'Visa';
+      if (/^(5[1-5]|2[2-7])/.test(num)) return 'Mastercard';
+      if (/^35/.test(num)) return 'JCB';
+      if (/^62/.test(num)) return 'UnionPay';
+      return 'Card';
+    }
+
+    function issuingBanks(prefix4) {
+      var hits = [];
       for (var b in BANK_BINS) {
-        if (BANK_BINS[b].indexOf(prefix4) !== -1) return b;
+        if (BANK_BINS[b].indexOf(prefix4) !== -1) hits.push(b);
       }
-      return null;
+      return hits;
+    }
+
+    function luhn(num) {
+      var sum = 0, dbl = false;
+      for (var i = num.length - 1; i >= 0; i--) {
+        var d = parseInt(num.charAt(i), 10);
+        if (dbl) { d *= 2; if (d > 9) d -= 9; }
+        sum += d; dbl = !dbl;
+      }
+      return sum % 10 === 0;
     }
 
     function refreshVerify() {
       vbtn.disabled = !(items.length && agree.checked && sel.bank && sel.cardOk);
+    }
+
+    function fullCardCheck(raw, brand, okMsg) {
+      if (raw.length < 15) {
+        cardStatus.textContent = brand + ' detected — enter the full card number.';
+      } else if (!luhn(raw)) {
+        cardStatus.textContent = 'Card number invalid — please check the digits.';
+        cardStatus.className = 'card-status bad';
+      } else {
+        cardStatus.textContent = brand + ' \u2022\u2022\u2022\u2022 ' + raw.slice(-4) + okMsg;
+        cardStatus.className = 'card-status ok';
+        sel.cardOk = true;
+      }
     }
 
     function updateCard() {
@@ -258,24 +294,30 @@
       cardIn.value = raw.replace(/(.{4})/g, '$1 ').trim();
       sel.cardOk = false;
       cardStatus.className = 'card-status';
+      var brand = cardBrand(raw);
       if (raw.length < 4) {
-        cardStatus.textContent = sel.bank
-          ? 'Enter card number — the starting digits identify your bank.'
-          : 'Select your bank, then enter your card number.';
+        cardStatus.textContent = sel.unlisted
+          ? 'Enter a valid card number — manual bank verification applies.'
+          : 'Enter your card number — the starting digits identify your bank.';
+      } else if (sel.unlisted) {
+        fullCardCheck(raw, brand, ' — manual bank verification.');
+      } else if (sel.bank === 'Bank of Singapore') {
+        fullCardCheck(raw, brand, ' — private tier verified with your relationship manager.');
       } else {
-        var issuer = issuingBank(raw.slice(0, 4));
-        if (!issuer) {
+        var issuers = issuingBanks(raw.slice(0, 4));
+        if (!issuers.length) {
           cardStatus.textContent = 'Bank card not supported — JBG accepts partner-bank cards only.';
           cardStatus.className = 'card-status bad';
-        } else if (!sel.bank) {
-          cardStatus.textContent = 'Card detected: ' + issuer + ' — select it above to continue.';
-        } else if (issuer === sel.bank) {
-          cardStatus.textContent = 'Card verified — issued by ' + issuer + '.';
-          cardStatus.className = 'card-status ok';
-          sel.cardOk = true;
         } else {
-          cardStatus.textContent = 'Card issued by ' + issuer + ' — does not match ' + sel.bank + '.';
-          cardStatus.className = 'card-status bad';
+          var issuerLabel = issuers.join(' / ');
+          if (!sel.bank) {
+            cardStatus.textContent = brand + ' detected: ' + issuerLabel + ' — select your bank below to verify.';
+          } else if (issuers.indexOf(sel.bank) !== -1) {
+            fullCardCheck(raw, brand, ' — issued by ' + sel.bank + '.');
+          } else {
+            cardStatus.textContent = 'Card issued by ' + issuerLabel + ' — does not match ' + sel.bank + '.';
+            cardStatus.className = 'card-status bad';
+          }
         }
       }
       refreshVerify();
@@ -284,16 +326,25 @@
     bankBtns.forEach(function (b) {
       b.addEventListener('click', function () {
         sel.bank = b.getAttribute('data-bank');
+        sel.unlisted = false;
+        notListed.classList.remove('unlisted-on');
         bankBtns.forEach(function (s) { s.classList.remove('selected'); });
         b.classList.add('selected');
         updateCard();
       });
     });
+    notListed.addEventListener('click', function () {
+      sel.unlisted = true;
+      sel.bank = 'Other / Unlisted Bank';
+      bankBtns.forEach(function (s) { s.classList.remove('selected'); });
+      notListed.classList.add('unlisted-on');
+      updateCard();
+    });
     cardIn.addEventListener('input', updateCard);
 
     function render() {
       listEl.innerHTML = '';
-      var total = 0;
+      total = 0;
       items.forEach(function (it, i) {
         total += it.price;
         var d = document.createElement('div');
@@ -327,9 +378,20 @@
 
     agree.addEventListener('change', refreshVerify);
     vbtn.addEventListener('click', function () {
+      var raw = cardIn.value.replace(/\D/g, '');
+      var order = {
+        items: items.map(function (it) {
+          return { name: it.name, sub: it.sub, finish: it.finish, storage: it.storage, price: it.price };
+        }),
+        total: total,
+        bank: sel.bank,
+        card: cardBrand(raw) + ' \u2022\u2022\u2022\u2022 ' + raw.slice(-4),
+        placed: new Date().toISOString()
+      };
+      try { localStorage.setItem('jbg_order', JSON.stringify(order)); } catch (e) {}
       vbtn.hidden = true;
       vdone.hidden = false;
-      agree.disabled = true;
+      location.href = 'contactus.html?intent=purchase';
     });
     render();
   })();

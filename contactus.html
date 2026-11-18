@@ -152,6 +152,7 @@
               <input class="form-control" type="text" id="contactSubject" name="subject" list="subjectSuggestions" placeholder="General Enquiry / Product Enquiry / Business Partnership" required>
               <datalist id="subjectSuggestions">
                 <option value="General Enquiry"></option>
+                <option value="Product Purchase — JBG Order"></option>
                 <option value="Product Enquiry — JBG Air / Pro / Play"></option>
                 <option value="Product Enquiry — JBG Tone / Feather / Vista"></option>
                 <option value="Business &amp; Enterprise Partnership"></option>
@@ -245,8 +246,36 @@
     var form = document.getElementById('jbgContactForm');
     var status = document.getElementById('formStatus');
     var submitBtn = document.getElementById('contactSubmitBtn');
-    if (form) {
-      form.addEventListener('submit', function (e) {
+    if (!form) return;
+
+    var nameIn = document.getElementById('contactName');
+    var emailIn = document.getElementById('contactEmail');
+    var subjIn = document.getElementById('contactSubject');
+    var msgIn = document.getElementById('contactMessage');
+
+    // Purchase handoff from cart.html — prefill the verified order details.
+    var order = null;
+    try { order = JSON.parse(localStorage.getItem('jbg_order') || 'null'); } catch (e) {}
+    var isPurchase = location.search.indexOf('intent=purchase') !== -1 && order && order.items && order.items.length;
+    if (isPurchase) {
+      var h2 = document.querySelector('.contact-form-card h2');
+      if (h2) h2.textContent = 'Complete Your Purchase';
+      var lead = document.querySelector('.contact-form-card p');
+      if (lead) lead.textContent = 'Your card is verified — add your name and email to submit the order. JBG responds within 2 business days.';
+      subjIn.value = 'Product Purchase — JBG Order';
+      var lines = ['JBG ORDER — pending verification', ''];
+      order.items.forEach(function (it) {
+        lines.push('- ' + it.name + ' | ' + it.finish + ' | ' + it.storage + ' | US$' + it.price.toLocaleString('en-US'));
+      });
+      lines.push('');
+      lines.push('Estimated total: US$' + order.total.toLocaleString('en-US'));
+      lines.push('Partner bank: ' + order.bank);
+      lines.push('Verified card: ' + order.card);
+      lines.push('Terms accepted: 800+ credit check, 2-business-day review, no-resale allocation.');
+      msgIn.value = lines.join('\n');
+    }
+
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
         var name = document.getElementById('contactName').value.trim();
         var email = document.getElementById('contactEmail').value.trim();
@@ -280,8 +309,16 @@
             return res.json();
           })
           .then(function () {
-            status.innerHTML = 'Thank you — your enquiry has been dispatched to <a href="mailto:jbgenquires@gmail.com" style="text-decoration:underline;font-weight:600;">jbgenquires@gmail.com</a>.';
+            status.innerHTML = isPurchase
+              ? 'Order request sent — JBG will email your verification link within 2 business days.'
+              : 'Thank you — your enquiry has been dispatched to <a href="mailto:jbgenquires@gmail.com" style="text-decoration:underline;font-weight:600;">jbgenquires@gmail.com</a>.';
             status.classList.add('visible');
+            if (isPurchase) {
+              try {
+                localStorage.removeItem('jbg_order');
+                localStorage.removeItem('jbg_cart');
+              } catch (e) {}
+            }
             form.reset();
           })
           .catch(function () {
@@ -295,7 +332,6 @@
             }
           });
       });
-    }
   })();
 </script>
 <script>if(location.search.indexOf('shot=1')!==-1){document.documentElement.style.background='#00ff66';document.body.style.background='#00ff66';var w=document.querySelector('.wrapper');if(w){w.style.minHeight='0';w.style.background='var(--bg)';}}</script>
