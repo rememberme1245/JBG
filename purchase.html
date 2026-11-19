@@ -70,7 +70,7 @@
             <img class="model-thumb" src="assets/jbg-air-midnight.png" alt="JBG Air">
             <span class="model-card-text">
               <span class="model-card-name">JBG Air</span>
-              <span class="model-card-sub">Professional Mobility</span>
+              <span class="model-card-sub">15-Inch Professional Mobility</span>
               <span class="model-card-price">From US$1,999</span>
             </span>
           </button>
@@ -78,7 +78,7 @@
             <img class="model-thumb" src="assets/jbg-pro-spaceblack.png" alt="JBG Pro">
             <span class="model-card-text">
               <span class="model-card-name">JBG Pro</span>
-              <span class="model-card-sub">Professional Performance</span>
+              <span class="model-card-sub">16-Inch Professional Performance</span>
               <span class="model-card-price">From US$2,499</span>
             </span>
           </button>
@@ -122,11 +122,17 @@
               <div class="finish-row" id="finishSelector"></div>
               <div class="finish-note">Selected finish — <strong id="selectedFinishLabel"></strong></div>
             </div>
-            <div class="purchase-step" style="margin-bottom: 0;">
+            <div class="purchase-step" id="configStep">
               <span class="step-label">Step 03</span>
               <h2 class="step-title" id="configStepTitle">Choose Your Storage</h2>
               <p class="step-lead" id="configStepLead"></p>
               <div id="configArea"></div>
+            </div>
+            <div class="purchase-step" id="coolerStep" hidden style="margin-bottom: 0;">
+              <span class="step-label">Step 04</span>
+              <h2 class="step-title">Choose Cooling System</h2>
+              <p class="step-lead">Add the custom Tempered-Glass External Water Cooler (+US$100) to unlock 5.8&ndash;6.1 GHz CPU boost &amp; GPU overclocking.</p>
+              <div class="config-grid-2" id="coolerSelector"></div>
             </div>
           </div>
           <aside class="summary-card" aria-label="Order summary">
@@ -135,10 +141,12 @@
               <div class="summary-row"><span class="k">Model</span><span id="sumModel"></span></div>
               <div class="summary-row"><span class="k">Finish</span><span id="sumFinish"></span></div>
               <div class="summary-row"><span class="k">Storage</span><span id="sumStorage"></span></div>
+              <div class="summary-row" id="sumCoolerRow" hidden><span class="k">Cooling</span><span id="sumCooler"></span></div>
             </div>
             <div class="summary-divider"></div>
             <div class="summary-row"><span class="k" id="sumBaseLabel"></span><span id="sumBase"></span></div>
             <div class="summary-row"><span class="k">Storage upgrade</span><span id="sumDelta"></span></div>
+            <div class="summary-row" id="sumCoolerPriceRow" hidden><span class="k">External Water Cooler</span><span id="sumCoolerPrice"></span></div>
             <div class="summary-divider"></div>
             <div class="summary-total-row"><span>Estimated Total</span><span class="summary-total" id="sumTotal"></span></div>
             <button type="button" id="addToCart" class="btn btn-primary summary-cta">Add to Cart &rarr;</button>
@@ -220,25 +228,33 @@
 </div>
 <script>
   (function () {
-    var MODELS = {"air": {"name": "JBG Air", "sub": "Professional Mobility", "base": 1999, "spec": "air-specifications.html", "storage": true, "rec": "512 GB", "box": [], "colours": [["Midnight", "#2A2F38", "assets/jbg-air-midnight.png"], ["Starlight", "#D8CFBF", "assets/jbg-air-starlight.png"], ["Silver", "#D4D6D9", "assets/jbg-air-silver.png"], ["Sky Blue", "#A9BFD3", "assets/jbg-air-skyblue.png"]]}, "pro": {"name": "JBG Pro", "sub": "Professional Performance", "base": 2499, "spec": "pro-specifications.html", "storage": true, "rec": "1 TB", "box": [], "colours": [["Space Black", "#333538", "assets/jbg-pro-spaceblack.png"], ["Silver", "#D4D6D9", "assets/jbg-pro-silver.png"], ["Natural Titanium", "#989086", "assets/jbg-pro-naturaltitanium.png"]]}, "play": {"name": "JBG Play", "sub": "Portable Handheld Gaming", "base": 2199, "spec": "play-specifications.html", "storage": true, "rec": "512 GB", "box": [], "colours": [["Midnight", "#2A2F38", "assets/jbg-play-midnight.png"], ["Ultramarine", "#44547E", "assets/jbg-play-ultramarine.png"], ["Crimson", "#8E2430", "assets/jbg-play-crimson.png"]]}, "tone": {"name": "JBG Tone", "sub": "Wired & Wireless ANC Earphones", "base": 299, "spec": "tone-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Tone", "Earphones pair"], ["Charging Case", "Wireless + AUX + USB-C"], ["3.5 mm AUX Wire", "Included wired cable"], ["Ear Tips + USB-C", "3 sizes + charge lead"]], "colours": [["Midnight", "#2A2F38", "assets/jbg-tone-midnight.png"], ["Ivory", "#E9E6DD", "assets/jbg-tone-ivory.png"], ["Titanium", "#8A8D92", "assets/jbg-tone-titanium.png"]]}, "feather": {"name": "JBG Feather", "sub": "Ultralight Wireless Mouse", "base": 149, "spec": "feather-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Feather", "Ultralight mouse"], ["2.4G Receiver", "8K wireless dongle"], ["USB-C Paracord", "Charge + wired"], ["Travel Pouch", "Protective sleeve"]], "colours": [["Midnight", "#2A2F38", "assets/jbg-feather-midnight.png"], ["Arctic White", "#ECEEF0", "assets/jbg-feather-arcticwhite.png"]]}, "vista": {"name": "JBG Vista", "sub": "Portable 16-inch Display", "base": 449, "spec": "vista-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Vista", "16-inch 2.5K display"], ["Protective Case", "Magnetic stand folio"], ["USB-C Cable", "Video + PD power"], ["Mini-HDMI", "Display cable"]], "colours": [["Space Gray", "#6E6F74", "assets/jbg-vista-spacegray.png"], ["Silver", "#D4D6D9", "assets/jbg-vista-silver.png"]]}};
+    var MODELS = {"air": {"name": "JBG Air", "sub": "15-Inch Professional Mobility", "base": 1999, "spec": "air-specifications.html", "storage": true, "rec": "512 GB", "box": [], "colours": [["Midnight", "#2A2F38", "assets/jbg-air-midnight.png"], ["Starlight", "#D8CFBF", "assets/jbg-air-starlight.png"], ["Silver", "#D4D6D9", "assets/jbg-air-silver.png"], ["Sky Blue", "#A9BFD3", "assets/jbg-air-skyblue.png"]]}, "pro": {"name": "JBG Pro", "sub": "16-Inch Professional Performance", "base": 2499, "spec": "pro-specifications.html", "storage": true, "rec": "1 TB", "box": [], "colours": [["Space Black", "#333538", "assets/jbg-pro-spaceblack.png"], ["Silver", "#D4D6D9", "assets/jbg-pro-silver.png"], ["Natural Titanium", "#989086", "assets/jbg-pro-naturaltitanium.png"]]}, "play": {"name": "JBG Play", "sub": "Portable Handheld Gaming", "base": 2199, "spec": "play-specifications.html", "storage": true, "rec": "512 GB", "box": [], "colours": [["Midnight", "#2A2F38", "assets/jbg-play-midnight.png"], ["Ultramarine", "#44547E", "assets/jbg-play-ultramarine.png"], ["Crimson", "#8E2430", "assets/jbg-play-crimson.png"], ["Silver", "#D4D6D9", "assets/jbg-play-silver.png"]]}, "tone": {"name": "JBG Tone", "sub": "Wired & Wireless ANC Earphones", "base": 299, "spec": "tone-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Tone", "Earphones pair"], ["Charging Case", "Wireless + AUX + USB-C"], ["3.5 mm AUX Wire", "Included wired cable"], ["Ear Tips + USB-C", "3 sizes + charge lead"]], "colours": [["Midnight", "#2A2F38", "assets/jbg-tone-midnight.png"], ["Ivory", "#E9E6DD", "assets/jbg-tone-ivory.png"], ["Titanium", "#8A8D92", "assets/jbg-tone-titanium.png"]]}, "feather": {"name": "JBG Feather", "sub": "Ultralight Wireless Mouse", "base": 149, "spec": "feather-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Feather", "Ultralight mouse"], ["2.4G Receiver", "8K wireless dongle"], ["USB-C Paracord", "Charge + wired"], ["Travel Pouch", "Protective sleeve"]], "colours": [["Midnight", "#2A2F38", "assets/jbg-feather-midnight.png"], ["Arctic White", "#ECEEF0", "assets/jbg-feather-arcticwhite.png"]]}, "vista": {"name": "JBG Vista", "sub": "Portable 16-inch Display", "base": 449, "spec": "vista-specifications.html", "storage": false, "rec": "512 GB", "box": [["JBG Vista", "16-inch 2.5K display"], ["Protective Case", "Magnetic stand folio"], ["USB-C Cable", "Video + PD power"], ["Mini-HDMI", "Display cable"]], "colours": [["Space Gray", "#6E6F74", "assets/jbg-vista-spacegray.png"], ["Silver", "#D4D6D9", "assets/jbg-vista-silver.png"]]}};
     var STORAGE = [["256 GB", 0, "Included"], ["512 GB", 80, "+US$80"], ["1 TB", 180, "+US$180"], ["2 TB", 380, "+US$380"]];
-    var state = { model: 'air', finish: 0, cap: '512 GB' };
+    var state = { model: 'air', finish: 0, cap: '512 GB', cooler: false };
     var q = location.search.match(/model=([a-z]+)/i);
     if (q && MODELS[q[1]]) state.model = q[1].toLowerCase();
+    if (state.model === 'play' && /[?&]cooler=1/i.test(location.search)) state.cooler = true;
 
     var modelBtns = Array.prototype.slice.call(document.querySelectorAll('.model-card'));
     var finishEl = document.getElementById('finishSelector');
     var finishLbl = document.getElementById('selectedFinishLabel');
+    var configStep = document.getElementById('configStep');
     var configArea = document.getElementById('configArea');
     var configTitle = document.getElementById('configStepTitle');
     var configLead = document.getElementById('configStepLead');
+    var coolerStep = document.getElementById('coolerStep');
+    var coolerEl = document.getElementById('coolerSelector');
     var sImg = document.getElementById('summaryImg');
     var sModel = document.getElementById('sumModel');
     var sFinish = document.getElementById('sumFinish');
     var sStorage = document.getElementById('sumStorage');
+    var sCoolerRow = document.getElementById('sumCoolerRow');
+    var sCooler = document.getElementById('sumCooler');
     var sBaseLabel = document.getElementById('sumBaseLabel');
     var sBase = document.getElementById('sumBase');
     var sDelta = document.getElementById('sumDelta');
+    var sCoolerPriceRow = document.getElementById('sumCoolerPriceRow');
+    var sCoolerPrice = document.getElementById('sumCoolerPrice');
     var sTotal = document.getElementById('sumTotal');
     var sSpec = document.getElementById('specLink');
 
@@ -300,6 +316,33 @@
       configArea.appendChild(grid);
     }
 
+    function renderCooler() {
+      var isPlay = state.model === 'play';
+      coolerStep.hidden = !isPlay;
+      configStep.style.marginBottom = isPlay ? '' : '0';
+      if (!isPlay) { state.cooler = false; coolerEl.innerHTML = ''; return; }
+      coolerEl.innerHTML = '';
+      var opts = [
+        { val: false, title: 'Standard Portable Cooling', sub: 'Included · Quiet 15–30 W onboard cooling', img: '' },
+        { val: true, title: '+ External Water Cooler', sub: '+US$100 · Tempered glass · 5.8–6.1 GHz & GPU OC', img: 'assets/jbg-play-cooler.png' }
+      ];
+      opts.forEach(function (op) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'config-card cooler-option' + (state.cooler === op.val ? ' selected' : '');
+        b.innerHTML = (op.img ? '<img class="cooler-thumb" src="' + op.img + '" alt="External Water Cooler">' : '') +
+                      '<span><span class="config-title" style="font-size:1rem;">' + op.title + '</span>' +
+                      '<span class="config-sub">' + op.sub + '</span></span>';
+        b.addEventListener('click', function () {
+          state.cooler = op.val;
+          coolerEl.querySelectorAll('.config-card').forEach(function (c) { c.classList.remove('selected'); });
+          b.classList.add('selected');
+          updateSummary();
+        });
+        coolerEl.appendChild(b);
+      });
+    }
+
     function currentDelta() {
       var mdl = MODELS[state.model];
       var delta = 0;
@@ -309,24 +352,36 @@
       return delta;
     }
 
+    function coolerCost() {
+      return (state.model === 'play' && state.cooler) ? 100 : 0;
+    }
+
     function updateSummary() {
       var mdl = MODELS[state.model];
       var col = mdl.colours[state.finish];
       var delta = currentDelta();
-      if (sImg.getAttribute('src') !== col[2]) {
+      var cCost = coolerCost();
+      var previewImg = (state.model === 'play' && state.cooler) ? 'assets/jbg-play-cooler.png' : col[2];
+      if (sImg.getAttribute('src') !== previewImg) {
         sImg.style.opacity = '0';
         sImg.onload = function () { sImg.style.opacity = '1'; };
-        sImg.src = col[2];
+        sImg.src = previewImg;
       }
-      sImg.alt = mdl.name + ' in ' + col[0] + ' — studio render';
+      sImg.alt = mdl.name + ' in ' + col[0] + (cCost ? ' with External Water Cooler' : '') + ' — studio render';
       finishLbl.textContent = col[0];
       sModel.textContent = mdl.name;
       sFinish.textContent = col[0];
       sStorage.textContent = mdl.storage ? state.cap + ' NVMe SSD' : 'Standard configuration';
+      sCoolerRow.hidden = state.model !== 'play';
+      sCoolerPriceRow.hidden = state.model !== 'play';
+      if (state.model === 'play') {
+        sCooler.textContent = state.cooler ? 'External Water Cooler' : 'Standard Portable';
+        sCoolerPrice.textContent = state.cooler ? '+US$100' : 'Included';
+      }
       sBaseLabel.textContent = mdl.name + ' — base';
       sBase.textContent = fmt(mdl.base);
       sDelta.textContent = delta ? '+' + fmt(delta) : 'Included';
-      sTotal.textContent = fmt(mdl.base + delta);
+      sTotal.textContent = fmt(mdl.base + delta + cCost);
       sSpec.href = mdl.spec;
       sSpec.textContent = 'View ' + mdl.name + ' specifications →';
       modelBtns.forEach(function (b) {
@@ -339,8 +394,10 @@
         state.model = b.getAttribute('data-model');
         state.finish = 0;
         state.cap = MODELS[state.model].rec;
+        state.cooler = false;
         renderFinishes();
         renderConfig();
+        renderCooler();
         updateSummary();
       });
     });
@@ -348,12 +405,16 @@
     state.cap = MODELS[state.model].rec;
     renderFinishes();
     renderConfig();
+    renderCooler();
     updateSummary();
 
     document.getElementById('addToCart').addEventListener('click', function () {
       var btn = this;
       var mdl = MODELS[state.model];
       var col = mdl.colours[state.finish];
+      var cCost = coolerCost();
+      var cfgText = mdl.storage ? state.cap + ' NVMe SSD' : 'Standard configuration';
+      if (cCost) cfgText += ' + External Water Cooler (+US$100)';
       var cart = [];
       try { cart = JSON.parse(localStorage.getItem('jbg_cart') || '[]'); } catch (e) {}
       cart.push({
@@ -361,9 +422,9 @@
         name: mdl.name,
         sub: mdl.sub,
         finish: col[0],
-        img: col[2],
-        storage: mdl.storage ? state.cap + ' NVMe SSD' : 'Standard configuration',
-        price: mdl.base + currentDelta()
+        img: cCost ? 'assets/jbg-play-cooler.png' : col[2],
+        storage: cfgText,
+        price: mdl.base + currentDelta() + cCost
       });
       try { localStorage.setItem('jbg_cart', JSON.stringify(cart)); } catch (e) {}
       btn.disabled = true;

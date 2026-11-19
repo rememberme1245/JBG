@@ -905,6 +905,29 @@ body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::a
   gap: 18px;
 }
 
+.config-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cooler-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  padding: 16px 18px;
+}
+
+.cooler-thumb {
+  width: 68px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #14161a;
+  flex-shrink: 0;
+}
+
 .config-card {
   background: var(--bg-elevated);
   border: 1.5px solid var(--hairline);
@@ -1928,6 +1951,7 @@ textarea.form-control {
   .cards-grid-3,
   .stats-grid-4,
   .config-grid-4,
+  .config-grid-2,
   .model-grid,
   .rule-grid,
   .footer-grid,
