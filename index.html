@@ -358,7 +358,7 @@
       var p = el.parentElement;
       var idx = gridCount.get(p) || 0;
       gridCount.set(p, idx + 1);
-      el.style.setProperty('--reveal-delay', Math.min(idx * 65, 260) + 'ms');
+      el.style.setProperty('--reveal-delay', Math.min(idx * 150, 600) + 'ms');
       el.classList.add('reveal-item');
     });
 
