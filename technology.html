@@ -181,7 +181,6 @@
 <script>
   (function () {
     var isShot = location.search.indexOf('shot=1') !== -1;
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isShot) {
       document.documentElement.style.background = '#00ff66';
       document.body.style.background = '#00ff66';
@@ -196,7 +195,6 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    if (reduced) return;
     document.documentElement.classList.add('jbg-motion');
 
     var main = document.querySelector('.site-main');
@@ -221,12 +219,14 @@
     if (!targets.length || !('IntersectionObserver' in window)) return;
 
     var gridCount = new WeakMap();
+    var held = [];
     targets.forEach(function (el) {
       var p = el.parentElement;
       var idx = gridCount.get(p) || 0;
       gridCount.set(p, idx + 1);
       el.style.setProperty('--reveal-delay', Math.min(idx * 150, 600) + 'ms');
       el.classList.add('reveal-item');
+      if (el.getBoundingClientRect().top < window.innerHeight - 36) held.push(el);
     });
 
     var io = new IntersectionObserver(function (entries) {
@@ -238,8 +238,19 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
 
     targets.forEach(function (el) {
-      io.observe(el);
+      if (held.indexOf(el) === -1) io.observe(el);
     });
+
+    if (!held.length) return;
+    if (window.scrollY > 10) {
+      held.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var revealOnScroll = function () {
+      held.forEach(function (el) { el.classList.add('is-visible'); });
+      window.removeEventListener('scroll', revealOnScroll);
+    };
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
   })();
 </script>
 </body>
