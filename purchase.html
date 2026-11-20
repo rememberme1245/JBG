@@ -478,7 +478,9 @@
     if (!targets.length || !('IntersectionObserver' in window)) return;
 
     var gridCount = new WeakMap();
+    var topSection = document.querySelector('.site-main section');
     targets.forEach(function (el) {
+      if (topSection && topSection.contains(el)) return;
       if (el.getBoundingClientRect().top < window.innerHeight) return;
       var p = el.parentElement;
       var idx = gridCount.get(p) || 0;
