@@ -20,7 +20,7 @@
     { q: 'All prices / cheapest?', k: ['price', 'prices', 'cost', 'how much', 'cheapest', 'most expensive', 'pricing', 'pricing list', 'range'],
       a: 'Proposed USD prices: Air <b>$1,999</b> · Pro <b>$2,499</b> · Play <b>$2,199</b> · Tone <b>$299</b> · Feather <b>$149</b> · Vista <b>$449</b>. Feather is the most affordable; Pro is the flagship. Full lineup on <a href="products.html">Products</a>.' },
     { q: 'Air vs Pro differences?', k: ['air vs pro', 'air or pro', 'difference', 'compare', 'which laptop', 'pro vs air', 'better laptop'],
-      a: 'Air = 15-inch, ~1.05 cm, built for mobility. Pro = 16-inch, 1.40 cm, 24-core workstation — only +33.4% thicker (vs Apple\'s +46.7% Air-to-Pro jump), ~55% quicker on heavy loads. See the <a href="compare.html">comparison table</a>.' },
+      a: 'Air = 15-inch, ~1.05 cm, built for mobility. Pro = 16-inch, 1.40 cm, 24-core workstation — only +33.4% thicker (vs Apple\'s +46.7% Air-to-Pro jump), ~55% quicker on heavy loads. Use the <a href="compare.html">comparison table</a> — the header dropdowns let you compare any two JBG devices.' },
     { q: 'Air specs / how thin?', k: ['air spec', 'air thin', 'air size', 'air screen', 'air inch', 'air cm', 'air mm', 'air weight', 'air core'],
       a: 'JBG Air targets a 15-inch display in a ~1.05 cm (10.5 mm) CNC aluminium chassis, 12-core, NVMe Gen4 storage. Details on <a href="air-specifications.html">Air specs</a>.' },
     { q: 'Pro specs / screen size?', k: ['pro spec', 'pro thin', 'pro size', 'pro screen', 'pro inch', 'pro cm', 'pro core', '24 core', 'workstation'],

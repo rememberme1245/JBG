@@ -311,36 +311,25 @@ body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::a
   font-size: 0.84rem;
 }
 
-.btn-primary {
-  background: var(--bg-dark);
-  color: var(--text-on-dark);
-  border-color: var(--bg-dark);
-}
-
-.btn-primary:hover {
-  background: #272a31;
-  border-color: #272a31;
-}
-
-.btn-outline {
+.btn-primary,
+.btn-outline,
+.btn-light {
   background: var(--bg-elevated);
   color: var(--text-primary);
   border-color: #b8bbc2;
 }
 
+.btn-primary:hover,
 .btn-outline:hover {
-  background: #e9e9e4;
-  border-color: var(--text-primary);
-}
-
-.btn-light {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-  border-color: var(--bg-elevated);
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  border-color: var(--bg-dark);
 }
 
 .btn-light:hover {
-  background: #e9e9e4;
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* ---------- Sections ---------- */
@@ -949,8 +938,21 @@ body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::a
 
 .config-card.selected {
   border-color: var(--bg-dark);
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-card);
+}
+
+.config-card.selected .config-title {
+  color: var(--text-on-dark);
+}
+
+.config-card.selected .config-sub {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.config-card.selected .config-rec {
   background: #ffffff;
-  box-shadow: 0 0 0 1px var(--bg-dark), var(--shadow-card);
+  color: var(--bg-dark);
 }
 
 .config-rec {
@@ -1145,8 +1147,20 @@ body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::a
 
 .model-card.selected {
   border-color: var(--bg-dark);
-  background: #ffffff;
-  box-shadow: 0 0 0 1px var(--bg-dark), var(--shadow-card);
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-card);
+}
+
+.model-card.selected .model-card-name {
+  color: var(--text-on-dark);
+}
+
+.model-card.selected .model-card-sub {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.model-card.selected .model-card-price {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .model-thumb {
@@ -1434,9 +1448,9 @@ body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::a
 
 .bank-chip.selected {
   border-color: var(--bg-dark);
-  background: #ffffff;
-  color: var(--text-primary);
-  box-shadow: 0 0 0 1px var(--bg-dark), var(--shadow-card);
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  box-shadow: var(--shadow-card);
 }
 
 .bank-chip-private {
@@ -1637,6 +1651,36 @@ body[data-page="contact"] .site-nav .nav-list > li > a[href="contactus.html"]::a
 .compare-highlight {
   background: rgba(17, 18, 21, 0.025);
   font-weight: 500;
+}
+
+.compare-select {
+  width: 100%;
+  padding: 10px 38px 10px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-sm);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.compare-select:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.compare-select option {
+  color: var(--text-primary);
+  background: #ffffff;
+}
+
+.compare-table thead th.compare-th {
+  vertical-align: top;
 }
 
 /* ---------- Contact Page ---------- */

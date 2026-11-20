@@ -57,72 +57,35 @@
         </div>
         <div class="section-header">
           <span class="eyebrow">Positioning &amp; Value Matrix</span>
-          <h1 class="section-title">Compare JBG Air vs JBG Pro</h1>
+          <h1 class="section-title">Compare the JBG Lineup</h1>
           <p class="section-lead">
-            Both Air and Pro outperform the typical premium laptop — Air wins on portability and value, Pro wins on raw speed, with &ge;20% more RAM for a ~25% price step.
+            Select any two proposed JBG devices below to compare target pricing, form factor, performance, power, connectivity, and finishes side by side.
           </p>
         </div>
 
         <div class="compare-table-wrap">
-          <table class="compare-table">
+          <table class="compare-table" id="compareTable">
             <thead>
               <tr>
                 <th>Specification Category</th>
-                <th>JBG Air (Proposed)</th>
-                <th>JBG Pro (Proposed)</th>
+                <th class="compare-th"><select class="compare-select" id="compareA" aria-label="First product to compare"></select></th>
+                <th class="compare-th"><select class="compare-select" id="compareB" aria-label="Second product to compare"></select></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">Primary Purpose</th>
-                <td>Executive Mobility &amp; All-Day Portability</td>
-                <td class="compare-highlight">Sustained Workstation Performance &amp; Value</td>
-              </tr>
-              <tr>
-                <th scope="row">CPU Architecture</th>
-                <td>12 CPU Cores / 24 Threads Target (up to 5.2 GHz peak)</td>
-                <td class="compare-highlight">24 Total CPU Cores Hybrid P+E (up to 5.5 GHz P-core peak)</td>
-              </tr>
-              <tr>
-                <th scope="row">Target Benchmark Index</th>
-                <td>~20% faster than typical premium laptops (heavy workloads); ~15% faster in everyday apps</td>
-                <td class="compare-highlight">~55% faster than typical premium laptops — JBG flagship</td>
-              </tr>
-              <tr>
-                <th scope="row">Installed RAM Capacity</th>
-                <td>Reference (Up to 32 GB Proposed)</td>
-                <td class="compare-highlight">At Least 20% More RAM Than Equivalent Air</td>
-              </tr>
-              <tr>
-                <th scope="row">Proposed Base Price (USD)</th>
-                <td>From US$1,999 (Price Index 100)</td>
-                <td class="compare-highlight">From US$2,499 (Price Index 125 &middot; +25%)</td>
-              </tr>
-              <tr>
-                <th scope="row">Display Size &amp; Chassis</th>
-                <td>15-inch &middot; 1.05 cm (10.5 mm) Ultra-Thin</td>
-                <td class="compare-highlight">16-inch &middot; 1.40 cm (14.0 mm) &middot; Only +33.4% vs Air (vs Apple +46.7% jump)</td>
-              </tr>
-              <tr>
-                <th scope="row">Liquid-Cooling System</th>
-                <td>Compact Cold Plate &amp; Side Radiator</td>
-                <td class="compare-highlight">Expanded Liquid Loop &amp; Higher-Capacity Radiator</td>
-              </tr>
-              <tr>
-                <th scope="row">NVMe Gen4 SSD Tiers</th>
-                <td>256 GB (Incl.) / 512 GB (+US$80) / 1 TB (+US$180) / 2 TB (+US$380)</td>
-                <td class="compare-highlight">256 GB (Incl.) / 512 GB (+US$80) / 1 TB (+US$180) / 2 TB (+US$380)</td>
-              </tr>
-              <tr>
-                <th scope="row">Enclosure Finishes</th>
-                <td>Midnight &middot; Starlight &middot; Silver &middot; Sky Blue</td>
-                <td class="compare-highlight">Space Black &middot; Silver &middot; Natural Titanium</td>
-              </tr>
+              <tr><th scope="row">Proposed Base Price (USD)</th><td data-col="a" data-row="price"></td><td data-col="b" data-row="price"></td></tr>
+              <tr><th scope="row">Category &amp; Primary Role</th><td data-col="a" data-row="role"></td><td data-col="b" data-row="role"></td></tr>
+              <tr><th scope="row">Display &amp; Form Factor</th><td data-col="a" data-row="form"></td><td data-col="b" data-row="form"></td></tr>
+              <tr><th scope="row">Headline Performance Target</th><td data-col="a" data-row="perf"></td><td data-col="b" data-row="perf"></td></tr>
+              <tr><th scope="row">Signature Feature</th><td data-col="a" data-row="feature"></td><td data-col="b" data-row="feature"></td></tr>
+              <tr><th scope="row">Battery &amp; Power Target</th><td data-col="a" data-row="power"></td><td data-col="b" data-row="power"></td></tr>
+              <tr><th scope="row">Connectivity &amp; Expansion</th><td data-col="a" data-row="conn"></td><td data-col="b" data-row="conn"></td></tr>
+              <tr><th scope="row">Available Finishes</th><td data-col="a" data-row="finishes"></td><td data-col="b" data-row="finishes"></td></tr>
             </tbody>
           </table>
         </div>
         <p class="spec-disclaimer">
-          Note: All figures are product development targets, not verified commercial specifications. Greater RAM capacity supports larger datasets and multitasking independently of processor clock speed.
+          Note: All figures are product development targets, not verified commercial specifications. Accessories such as the JBG External Water Cooler are optional add-ons rather than standalone devices and are therefore not listed as comparison columns.
         </p>
       </div>
     </section>
@@ -197,7 +160,109 @@
     </div>
   </footer>
 </div>
-
+<script>
+  (function () {
+    var DATA = {
+      air: {
+        name: 'JBG Air',
+        price: 'From US$1,999 (Price Index 100)',
+        role: 'Ultraportable professional laptop \u2014 executive mobility & all-day portability',
+        form: '15-inch anti-reflective display \u00b7 1.05 cm (10.5 mm) CNC aluminium unibody',
+        perf: '12 CPU cores / 24 threads target, up to 5.2 GHz \u2014 ~20% faster than typical premium laptops at heavy workloads',
+        feature: 'Compact integrated liquid-cooling cold plate & side radiator concept',
+        power: '25\u201335 W target envelope; subject to thermal validation',
+        conn: 'PCIe Gen4 NVMe SSD 256 GB\u20132 TB \u00b7 up to 32 GB memory (proposed)',
+        finishes: 'Midnight \u00b7 Starlight \u00b7 Silver \u00b7 Sky Blue'
+      },
+      pro: {
+        name: 'JBG Pro',
+        price: 'From US$2,499 (Price Index 125 \u00b7 +25%)',
+        role: '16-inch professional workstation \u2014 sustained performance & value',
+        form: '16-inch workstation display \u00b7 1.40 cm (14.0 mm) \u2014 only +33.4% vs Air (vs Apple +46.7% Air-to-Pro jump)',
+        perf: '24 hybrid P+E CPU cores target, up to 5.5 GHz \u2014 ~55% faster than typical premium laptops; \u226520% more RAM than Air',
+        feature: 'Expanded liquid-cooling loop with higher-capacity radiator',
+        power: '45\u201354 W sustained target; subject to thermal validation',
+        conn: 'PCIe Gen4 NVMe SSD 256 GB\u20132 TB (1 TB recommended)',
+        finishes: 'Space Black \u00b7 Silver \u00b7 Natural Titanium'
+      },
+      play: {
+        name: 'JBG Play',
+        price: 'From US$2,199',
+        role: 'Premium handheld gaming computer \u2014 portable & docked play',
+        form: 'Steam-Deck-inspired symmetrical layout \u00b7 dual trackpads \u00b7 20% thinner unibody with High-Density Textured Elastomer grips',
+        perf: '8 CPU cores / 16 threads \u2014 unlocks 5.8\u20136.1 GHz CPU boost & GPU overclock when docked to the External Water Cooler',
+        feature: 'Optional tempered-glass External Water Cooler dock (+US$100) with visible live cooling loop',
+        power: '15\u201330 W quiet portable play; extended envelope when docked',
+        conn: 'PCIe Gen4 NVMe SSD 256 GB\u20132 TB \u00b7 up to 32 GB unified memory (+10% vs Air target)',
+        finishes: 'Midnight \u00b7 Ultramarine \u00b7 Crimson \u00b7 Silver'
+      },
+      tone: {
+        name: 'JBG Tone',
+        price: 'From US$299',
+        role: 'Wired & wireless ANC earphones \u2014 executive travel & deep work',
+        form: 'In-ear buds + wireless charging pebble case with 3.5 mm AUX pass-through',
+        perf: 'Adaptive hybrid ANC targeting up to 99% ambient noise reduction; hybrid dual-driver acoustics',
+        feature: 'Detachable braided 3.5 mm AUX cable \u2014 lossless, zero-latency wired mode',
+        power: '8 h per charge \u00b7 up to 32 h total with case; USB-C fast & Qi wireless charging',
+        conn: 'Bluetooth 5.4 multipoint (LE Audio) + detachable 3.5 mm TRRS wired cable',
+        finishes: 'Midnight \u00b7 Ivory \u00b7 Titanium'
+      },
+      feather: {
+        name: 'JBG Feather',
+        price: 'From US$149',
+        role: 'Ultralight precision mouse \u2014 productivity & competitive play',
+        form: '~20 g thin-wall carbon-fiber composite shell target',
+        perf: '26,000 DPI optical sensor \u00b7 up to 8,000 Hz wireless polling target',
+        feature: 'Optical switches rated 90M clicks \u00b7 100% PTFE skates',
+        power: 'Up to 90 h battery at standard 1,000 Hz polling',
+        conn: '2.4 GHz dedicated dongle \u00b7 Bluetooth \u00b7 USB-C wired play',
+        finishes: 'Midnight \u00b7 Arctic White'
+      },
+      vista: {
+        name: 'JBG Vista',
+        price: 'From US$449',
+        role: 'Portable second display \u2014 dual-screen mobile workstations',
+        form: '16-inch 2560\u00d71600 (16:10) anti-glare IPS \u00b7 0.7 in thin \u00b7 ~750 g target',
+        perf: '100% sRGB calibrated color coverage target',
+        feature: 'Magnetic folio case folds into a multi-angle desk stand',
+        power: 'Bus-powered via a single USB-C cable (power pass-through)',
+        conn: '2\u00d7 USB-C (DisplayPort Alt Mode) \u00b7 Mini-HDMI \u00b7 3.5 mm audio \u00b7 dual stereo speakers',
+        finishes: 'Space Gray \u00b7 Silver'
+      }
+    };
+    var ORDER = ['air', 'pro', 'play', 'tone', 'feather', 'vista'];
+    var selA = document.getElementById('compareA');
+    var selB = document.getElementById('compareB');
+    var table = document.getElementById('compareTable');
+    if (!selA || !selB || !table) return;
+    ORDER.forEach(function (k) {
+      var oa = document.createElement('option'); oa.value = k; oa.textContent = DATA[k].name; selA.appendChild(oa);
+      var ob = document.createElement('option'); ob.value = k; ob.textContent = DATA[k].name; selB.appendChild(ob);
+    });
+    selA.value = 'air';
+    selB.value = 'pro';
+    var prevA = 'air';
+    var prevB = 'pro';
+    function fill(col, key) {
+      var d = DATA[key];
+      table.querySelectorAll('td[data-col="' + col + '"]').forEach(function (td) {
+        td.textContent = d[td.getAttribute('data-row')];
+      });
+    }
+    function sync() { fill('a', selA.value); fill('b', selB.value); }
+    selA.addEventListener('change', function () {
+      if (selA.value === selB.value) selB.value = prevA;
+      prevA = selA.value; prevB = selB.value;
+      sync();
+    });
+    selB.addEventListener('change', function () {
+      if (selB.value === selA.value) selA.value = prevB;
+      prevA = selA.value; prevB = selB.value;
+      sync();
+    });
+    sync();
+  })();
+</script>
 <script src="assistant.js" defer></script>
 <script>
   (function () {
