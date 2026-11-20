@@ -351,6 +351,7 @@
       });
   })();
 </script>
+<script src="assistant.js" defer></script>
 <script>
   (function () {
     var isShot = location.search.indexOf('shot=1') !== -1;
@@ -413,6 +414,14 @@
 
     targets.forEach(function (el) {
       if (el.classList.contains('reveal-item')) io.observe(el);
+    });
+
+    document.addEventListener('click', function (e) {
+      var sel = e.target.closest('.filter-tab, .swatch-btn, .model-card, .config-card:not(.static-box), .bank-chip');
+      if (!sel || sel.disabled) return;
+      sel.classList.remove('select-pop');
+      void sel.offsetWidth;
+      sel.classList.add('select-pop');
     });
   })();
 </script>
